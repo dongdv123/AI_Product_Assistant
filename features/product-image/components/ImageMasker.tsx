@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { analyzeImageRegion } from '../../seo-assistant/services/geminiService';
+import { analyzeImageRegion } from '../services/geminiService';
 
 interface ImageMaskerProps {
     onImageChange: (imageBase64: string | null) => void;

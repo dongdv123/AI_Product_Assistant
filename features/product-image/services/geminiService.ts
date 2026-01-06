@@ -645,3 +645,24 @@ export const generateFinalImages = async (
         throw error;
     }
 };
+
+export const analyzeImageRegion = async (imageBase64: string, maskBase64: string): Promise<string> => {
+    const model = "gemini-2.0-flash";
+    
+    try {
+        const response = await ai.models.generateContent({
+            model,
+            contents: { 
+                parts: [
+                    { text: "Analyze the area highlighted in white in the mask image relative to the original image. Describe only the object or element that needs to be replaced or modified in the highlighted area. Provide a short, concise description in English suitable for an image generation prompt." },
+                    { inlineData: { mimeType: "image/png", data: imageBase64.split(',')[1] } },
+                    { inlineData: { mimeType: "image/png", data: maskBase64.split(',')[1] } }
+                ] 
+            }
+        });
+        return response.text?.trim() || "";
+    } catch (error) {
+        console.error("Error analyzing image region:", error);
+        return "";
+    }
+};

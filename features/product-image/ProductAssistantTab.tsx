@@ -16,7 +16,7 @@ import {
   generateImage as generateRunwareImage, 
   generateBatchImages,
   testRunwareModel
-} from '../image-generator/services/runwareService';
+} from './services/runwareService';
 import { fileToBase64, fileToDataURL } from './utils/fileUtils';
 import ImageUploader from './components/ImageUploader';
 import ImageGrid from './components/ImageGrid';
@@ -29,7 +29,7 @@ import EtsySeoDisplay from './components/EtsySeoDisplay';
 import Tooltip from './components/Tooltip';
 import QuestionMarkIcon from './components/icons/QuestionMarkIcon';
 import { Task, getUserTasks, addTask, getTasks } from './services/taskService';
-import ImageMasker from '../image-generator/components/ImageMasker';
+import ImageMasker from './components/ImageMasker';
 import { Button } from '@/components/ui/button';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -62,7 +62,7 @@ const ProductAssistantTab: React.FC = () => {
   const [prompts, setPrompts] = useState<string[]>([]);
   const [productName, setProductName] = useState<string>('');
   const [productDescription, setProductDescription] = useState<string>('');
-  const [vibe, setVibe] = useState<string>('');
+  const [vibe, setVibe] = useState<string>('Warm & Cozy');
   const [isCustomVibe, setIsCustomVibe] = useState<boolean>(false);
   const [generatedImages, setGeneratedImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
