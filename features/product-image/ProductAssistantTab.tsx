@@ -39,11 +39,11 @@ type Step = 'upload' | 'analyzing' | 'editing' | 'results';
 const USER_HASH = 'default_user'; // For single-user localStorage persistence
 
 const VIBE_OPTIONS = [
+    { value: "Nature & Organic", label: "Thiên nhiên & Hữu cơ (Nature & Organic)" },
     { value: "Minimalist & Clean", label: "Tối giản & Sạch sẽ (Minimalist & Clean)" },
     { value: "Warm & Cozy", label: "Ấm áp & Ấm cúng (Warm & Cozy)" },
     { value: "Luxury & Elegant", label: "Sang trọng & Thanh lịch (Luxury & Elegant)" },
     { value: "Vintage & Rustic", label: "Cổ điển & Mộc mạc (Vintage & Rustic)" },
-    { value: "Nature & Organic", label: "Thiên nhiên & Hữu cơ (Nature & Organic)" },
     { value: "Vibrant & Playful", label: "Sôi động & Vui tươi (Vibrant & Playful)" },
     { value: "Dark & Moody", label: "Tối & Tâm trạng (Dark & Moody)" },
     { value: "Studio Professional", label: "Studio Chuyên nghiệp (Studio Professional)" },
@@ -62,7 +62,7 @@ const ProductAssistantTab: React.FC = () => {
   const [prompts, setPrompts] = useState<string[]>([]);
   const [productName, setProductName] = useState<string>('');
   const [productDescription, setProductDescription] = useState<string>('');
-  const [vibe, setVibe] = useState<string>('Warm & Cozy');
+  const [vibe, setVibe] = useState<string>('Nature & Organic');
   const [isCustomVibe, setIsCustomVibe] = useState<boolean>(false);
   const [generatedImages, setGeneratedImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
