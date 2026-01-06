@@ -718,7 +718,6 @@ ${failedPrompt}
                             }}
                             className="w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition mb-2"
                         >
-                            <option value="">-- Chọn phong cách --</option>
                             {VIBE_OPTIONS.map(opt => (
                                 <option key={opt.value} value={opt.value}>{opt.label}</option>
                             ))}
