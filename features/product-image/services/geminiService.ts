@@ -339,7 +339,7 @@ export const optimizePromptWithGemini = async (
             
             // Angle Logic: Convert technical angles into descriptive instructions
             const angleInstructionsMap: Record<string, string> = {
-                "Front View": "Place the camera directly in front of the product at eye level. The product should look perfectly symmetrical and straight-on. Do not angle the camera down or from the side.",
+                "Front View": "Place the camera directly in front of the product at eye level. The product should look perfectly symmetrical and straight-on. Do not angle the camera down or from the side. STRICTLY 0-degree rotation.",
                 "Top-Down Flat Lay": `
                     THEORY: Knolling / Flat Lay Photography.
                     CRITICAL POSITIONING: The product is physically LYING FLAT on its back or side on the surface. Gravity pulls it down. It is NOT standing upright.
@@ -367,11 +367,11 @@ export const optimizePromptWithGemini = async (
 
             // Negative Prompt Logic
             const negativePromptMap: Record<string, string> = {
-                "Front View": "side view, angled view, profile, 3/4 view",
-                "Top-Down Flat Lay": "perspective view, angled view, side view, 45 degree, horizon, close up, dark background",
-                "45-Degree View": "front view, top view, flat lay, side profile, straight on, symmetry",
+                "Front View": "side view, angled view, profile, 3/4 view, rotation, perspective, from above",
+                "Top-Down Flat Lay": "perspective view, angled view, side view, 45 degree, horizon, close up, dark background, standing upright, vertical",
+                "45-Degree View": "front view, top view, flat lay, side profile, straight on, symmetry, 90 degree",
                 "Side Profile": "front view, face on, symmetry, looking at camera, top view, flat lay, angled view, 3/4 view, three quarter view, perspective, diagonal, front face visible",
-                "In-Context Close-up": "full product, whole garment, entire object, complete object, zoomed out, wide shot, centered composition",
+                "In-Context Close-up": "full product, whole garment, entire object, complete object, zoomed out, wide shot, centered composition, far away",
                 "Creative Composition": "boring, plain, standard product shot, centered, symmetrical"
             };
             const vibeNegativeMap: Record<string, string> = {
@@ -425,13 +425,16 @@ export const optimizePromptWithGemini = async (
                 4. **VIBE CONSTRAINT:** If the Vibe suggests a large environment (e.g., "Nature", "Industrial"), do NOT render the whole environment. Show only a tiny slice of it in the background to hint at the vibe.
             
             OUTPUT RULES:
-            1. Start with the subject.
+            1. **CRITICAL FIRST SENTENCE**: 
+               - Start with the ANGLE description, then the SUBJECT.
+               - Example: "A top-down flat lay photograph of [Product]..." 
+               - Example: "A side-profile shot of [Product]..."
                - IF "In-Context Close-up": Start with "A macro close-up shot of the [Material/Texture] of..."
-               - OTHERWISE: Start with "A [Angle] photograph of [Product Name]..."
             2. Describe the camera angle, product position, and composition using the theory provided.
             3. Describe lighting and atmosphere based on the Target Vibe.
-            4. NO technical tags (e.g., (weight:1.5)).
-            5. Put all "Avoid/No" instructions in the Negative section.
+            4. **FINAL REINFORCEMENT**: End the description with a short 2-3 word summary of the angle (e.g., "View: Top-down").
+            5. NO technical tags (e.g., (weight:1.5)).
+            6. Put all "Avoid/No" instructions in the Negative section.
             
             OUTPUT FORMAT:
             [Natural Language Description]
